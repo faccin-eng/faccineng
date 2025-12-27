@@ -1,0 +1,9 @@
+# Migrations auto-geradas
+**/migrations/*.py linguist-generated=true
+
+# Arquivos estáticos coletados
+/static/* linguist-vendored=true
+/staticfiles/* linguist-vendored=true
+
+# Media files
+/media/* linguist-vendored=true
