@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-policypage{% endblock %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    {% for block in page.body %}
+        {% if block.block_type == 'text' %}
+            <div>{{ block.value }}</div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

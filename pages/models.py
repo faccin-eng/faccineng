@@ -4,12 +4,30 @@ from wagtail.fields import StreamField
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
 
+class IndexPage(Page):
+    intro = StreamField([
+        ('title', blocks.CharBlock()),
+        ('corpo', blocks.RichTextBlock()),
+        
+    ], use_json_field=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+    ]
 class StandardPage(Page):
     body = StreamField([
         ('heading', blocks.CharBlock()),
         ('paragraph', blocks.RichTextBlock()),
     ], use_json_field=True)
     
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+class PolicyPage(Page):
+    body = StreamField([
+        ('text', blocks.RichTextBlock()),
+    ], use_json_field=True)
     content_panels = Page.content_panels + [
         FieldPanel('body'),
     ]
