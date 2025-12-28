@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Conversor OFX para CSV</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="ofx_file" accept=".ofx">
+    <button type="submit">Converter</button>
+</form>
+{% endblock %}
