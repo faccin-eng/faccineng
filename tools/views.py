@@ -1,41 +1,52 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
+from django_ratelimit.decorators import ratelimit
 from ofxparse import OfxParser
 import csv
 import io
 
+MAX_FILE_SIZE = 5 * 1024 * 1024  
+
+@ratelimit(key='ip', rate='6/h', method='POST')
 def ofx_converter(request):
     if request.method == 'POST' and request.FILES.get('ofx_file'):
-        print("POST recebido")
+        ofx_file = request.FILES['ofx_file']
         
-        if request.FILES.get('ofx_file'):
-            ofx_file = request.FILES['ofx_file']
-            print('arquivo recebido:', ofx_file.name)
-
-            try:
-                ofx = OfxParser.parse(ofx_file)
-                print("parseado com sucesso")
-
-                output = io.StringIO()
-                writer = csv.writer(output, delimiter=';')
-                writer.writerow(['Data', 'Descrição', 'Valor'])
-
+        if ofx_file.size > MAX_FILE_SIZE:
+            return HttpResponseBadRequest("Arquivo muito grande (máx 5MB)")
+        
+        if not ofx_file.name.lower().endswith('.ofx'):
+            return HttpResponseBadRequest("Apenas arquivos .ofx são permitidos")
+        
+        allowed_types = ['application/x-ofx', 'application/octet-stream', 'text/plain']
+        if ofx_file.content_type not in allowed_types:
+            return HttpResponseBadRequest("Tipo de arquivo inválido")
+        
+        try:
+            ofx = OfxParser.parse(ofx_file)
             
-                for trans in ofx.account.statement.transactions:
-                    valor_formatado = f"{trans.amount:.2f}".replace('.',',')
-
-                    writer.writerow([
-                        trans.date.strftime('%d/%m/%Y'),
-                        trans.payee,
-                        valor_formatado
-                    ])
-                print("CSV gerado, tamanho:", len(output.getvalue()))
-
-                response = HttpResponse(output.getvalue(),content_type='text/CSV; charset=utf-8')
-                response['Content-Disposition'] = 'attachment; filename="converted.csv"'
-                return response
-            except Exception as e:
-                print("ERRO:", str(e))
-                import traceback
-                traceback.print_exc()
+            transactions = list(ofx.account.statement.transactions)
+            if len(transactions) > 10000:
+                return HttpResponseBadRequest("Arquivo com muitas transações")
+            
+            output = io.StringIO()
+            writer = csv.writer(output, delimiter=';')
+            writer.writerow(['Data', 'Descrição', 'Valor'])
+            
+            for trans in transactions:
+                valor_formatado = f"{trans.amount:.2f}".replace('.', ',')
+                writer.writerow([
+                    trans.date.strftime('%d/%m/%Y'),
+                    trans.payee[:200], 
+                    valor_formatado
+                ])
+            
+            response = HttpResponse(output.getvalue(), content_type='text/csv; charset=utf-8')
+            response['Content-Disposition'] = 'attachment; filename="extrato.csv"'
+            return response
+            
+        except Exception as e:
+            print("ERRO:", str(e)) 
+            return HttpResponseBadRequest("Erro ao processar arquivo")
+    
     return render(request, 'tools/ofx_converter.html')

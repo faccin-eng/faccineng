@@ -1,0 +1,66 @@
+from django.db import models
+from wagtail.admin.panels import (
+    FieldPanel,
+    MultiFieldPanel,
+)
+from wagtail.contrib.settings.models import (
+    BaseGenericSetting,
+    register_setting,
+)
+
+@register_setting
+class FooterSettings(BaseGenericSetting):
+    linkedin_url = models.URLField(verbose_name="Linkedin", blank=True)
+    zap_url = models.URLField(verbose_name="What's App", help_text="(wa.me/+55seunumeroaqui)", blank=True)
+    github_url = models.URLField(verbose_name="GitHub", blank=True)
+    face_url = models.URLField(verbose_name="Facebook", blank=True)
+    instagram_url = models.URLField(verbose_name="Instagram URL", blank=True)
+
+    banner_image1 = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Banner 1 (800x110px)"
+    )
+    
+    banner_image2 = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Banner 2 (opcional)"
+    )
+
+    banner_url1 = models.URLField(
+        blank=True,
+        verbose_name="Link Imagem 1",
+        help_text="URL opcional da imagem 1)"
+    )
+
+    banner_url2 = models.URLField(
+        blank=True,
+        verbose_name="Link Imagem 2", 
+        help_text="URL opcional da imagem 2)"
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel("linkedin_url"),
+                FieldPanel("zap_url"),
+                FieldPanel("github_url"),
+                FieldPanel("face_url"),
+                FieldPanel("instagram_url"),
+            ], "Links das mídias sociais"),
+
+        MultiFieldPanel([
+            FieldPanel("banner_image1"),
+            FieldPanel("banner_image2"),
+            FieldPanel("banner_url1"),
+            FieldPanel("banner_url2"),
+        ], "Configurações do carrossel de banners do Rodapé (800x110px)")
+    ]
+

@@ -27,9 +27,11 @@ INSTALLED_APPS = [
     "home",
     "pages",
     "tools",
+    "base",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.settings",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -76,6 +78,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -83,9 +86,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "faccineng.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+RATELIMIT_VIEW = 'tools.views.ratelimited' #IP limit for uploads
 
 DATABASES = {
     "default": {

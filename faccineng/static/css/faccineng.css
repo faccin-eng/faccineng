@@ -1,0 +1,16 @@
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.social-icons a {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #188103; /* cor do LinkedIn */
+}
