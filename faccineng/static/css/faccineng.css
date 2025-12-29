@@ -14,3 +14,10 @@
 .social-icons a:hover {
     color: #188103; /* cor do LinkedIn */
 }
+
+.footer-text{
+    /* display: flex; */
+    font-size: 18px;
+    color: rgb(2, 121, 91);
+    justify-content: left;
+}

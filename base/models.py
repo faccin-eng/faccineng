@@ -3,10 +3,13 @@ from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
 )
+from wagtail.fields import RichTextField
+
 from wagtail.contrib.settings.models import (
     BaseGenericSetting,
     register_setting,
 )
+from wagtail.snippets.models import register_snippet
 
 @register_setting
 class FooterSettings(BaseGenericSetting):
@@ -46,6 +49,8 @@ class FooterSettings(BaseGenericSetting):
         help_text="URL opcional da imagem 2)"
     )
 
+    footer_text = RichTextField(blank=True, verbose_name="Texto do Rodapé")
+
     panels = [
         MultiFieldPanel(
             [
@@ -61,6 +66,7 @@ class FooterSettings(BaseGenericSetting):
             FieldPanel("banner_image2"),
             FieldPanel("banner_url1"),
             FieldPanel("banner_url2"),
-        ], "Configurações do carrossel de banners do Rodapé (800x110px)")
+        ], "Configurações do carrossel de banners do Rodapé (800x110px)"),
+        FieldPanel("footer_text"),
     ]
 

@@ -1,0 +1,59 @@
+{% load wagtailcore_tags navigation_tags wagtailuserbar wagtailsettings_tags wagtailimages_tags %}
+
+{% get_site_root as site_root %}
+<header class="site-header">
+    <nav class="container">
+        <a href="#main" class="skip-link">Skip to content</a>
+        <div class="nav-content">
+
+            <div class="current-date">
+                <span id="current-date"></span>
+            </div>
+
+            <div class="nav-logo-container">
+                {% if settings.base.HeaderSettings.navbar_logo %}
+                {% image settings.base.HeaderSettings.navbar_logo fill-180x60 as navbar_logo_img %}
+                <img src="{{ navbar_logo_img.url}}" alt="Logo" class="navbar-logo">
+                {% endif %}
+            </div>
+
+            <div class="nav-links">
+                <a href="{% pageurl site_root %}">Início</a>
+                {% for menuitem in site_root.get_children.live.in_menu %}
+                     <a href="{% pageurl menuitem %}"> {{ menuitem.title }}</a>
+                {% endfor %}
+            </div>
+            
+            <div class="search-container">
+                <form action="{% url 'search' %}" method="get" class="search-form" role="search">
+                    <input type="text" name="query" placeholder="Pesquisar..." class="search-input">
+                    <button type="submit" class="search-button" aria-label="Realizar Busca">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+    <div class="header-images container">
+        {% if settings.base.HeaderSettings.logo %}
+            {% image settings.base.HeaderSettings.logo fill-300x110 as logo_img %}
+            <img src="{{ logo_img.url }}" alt="Logo" class="header-logo">
+        {% endif %}
+        
+        {% if settings.base.HeaderSettings.banner_url %}
+            <a href="{{settings.base.HeaderSettings.banner_url}}" target="_blank" rel="noopener">
+                <img src="{{ settings.base.HeaderSettings.banner.file.url }}" alt="Banner Anuncie aqui" class="header-banner">
+            </a>
+        {% elif settings.base.HeaderSettings.banner %}
+<img src="{{ settings.base.HeaderSettings.banner.file.url }}" alt="Banner" class="header-banner">
+        {% endif %}
+    </div>
+
+
+        {% wagtailuserbar "top-right" %}
+    </nav>
+</header>

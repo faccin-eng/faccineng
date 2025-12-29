@@ -1,4 +1,4 @@
-{% load wagtailsettings_tags %}
+{% load wagtailsettings_tags wagtailcore_tags %}
 
 <footer class="site-footer">
     <div class="container">
@@ -20,6 +20,11 @@
                     <a href="{{ footer.linkedin_url }}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 {% endif %}
             </div>
-        {% endwith %}
-    </div>
+            {% if footer.footer_text %}
+                <div class="footer-text">
+                    {{ footer.footer_text|richtext }}
+                </div>
+            {% endif %}
+            {% endwith %}
+        </div>
 </footer>
