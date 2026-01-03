@@ -1,8 +1,22 @@
 .social-icons {
     display: flex;
     gap: 15px;
+    justify-content: right;
+
+}
+.nav-itens {
+    display: flex;
+    gap: 15px;
     justify-content: center;
-    padding: 20px 0;
+    font-size: 24px;
+    color:rgb(255, 255, 255);
+    background-color: rgb(2, 121, 91);
+    text-decoration: none;
+}
+.nav-itens a:hover{
+    background-color: rgb(255, 255, 255);
+    color: #00bd84;
+    transform: translateY(-2px);
 }
 
 .social-icons a {
@@ -12,12 +26,12 @@
 }
 
 .social-icons a:hover {
-    color: #188103; /* cor do LinkedIn */
+    color: #188103; 
 }
 
 .footer-text{
-    /* display: flex; */
+    display: flex;
     font-size: 18px;
     color: rgb(2, 121, 91);
-    justify-content: left;
+    justify-content: center;
 }

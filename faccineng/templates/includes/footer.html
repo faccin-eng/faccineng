@@ -3,23 +3,7 @@
 <footer class="site-footer">
     <div class="container">
         {% with footer=settings.base.FooterSettings %}
-            <div class="social-icons">
-                {% if footer.zap_url %}
-                    <a href="{{ footer.zap_url }}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                {% endif %}
-                {% if footer.instagram_url %}
-                    <a href="{{ footer.instagram_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                {% endif %}
-                {% if footer.github_url %}
-                    <a href="{{ footer.github_url }}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                {% endif %}
-                {% if footer.face_url %}
-                    <a href="{{ footer.face_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                {% endif %}
-                {% if footer.linkedin_url %}
-                    <a href="{{ footer.linkedin_url }}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                {% endif %}
-            </div>
+
             {% if footer.footer_text %}
                 <div class="footer-text">
                     {{ footer.footer_text|richtext }}

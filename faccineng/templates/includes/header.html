@@ -1,59 +1,38 @@
-{% load wagtailcore_tags navigation_tags wagtailuserbar wagtailsettings_tags wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags %}
 
-{% get_site_root as site_root %}
-<header class="site-header">
-    <nav class="container">
-        <a href="#main" class="skip-link">Skip to content</a>
-        <div class="nav-content">
+<header>
+    {% get_site_root as site_root %}
+    <nav>
+        <div class="nav-itens">
+        <a href="{% pageurl site_root %}">Home</a> 
+        {% for menuitem in site_root.get_children.live.in_menu %}
+            <a href="{% pageurl menuitem %}">| {{ menuitem.title }}</a>
+        {% endfor %}
+        </div>
+    </nav>
+    {% load wagtailsettings_tags wagtailcore_tags %}
 
-            <div class="current-date">
-                <span id="current-date"></span>
-            </div>
-
-            <div class="nav-logo-container">
-                {% if settings.base.HeaderSettings.navbar_logo %}
-                {% image settings.base.HeaderSettings.navbar_logo fill-180x60 as navbar_logo_img %}
-                <img src="{{ navbar_logo_img.url}}" alt="Logo" class="navbar-logo">
+<footer class="site-footer">
+    <div class="container">
+        {% with footer=settings.base.FooterSettings %}
+            <div class="social-icons">
+                {% if footer.zap_url %}
+                    <a href="{{ footer.zap_url }}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                {% endif %}
+                {% if footer.instagram_url %}
+                    <a href="{{ footer.instagram_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+                {% if footer.github_url %}
+                    <a href="{{ footer.github_url }}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                {% endif %}
+                {% if footer.face_url %}
+                    <a href="{{ footer.face_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                {% endif %}
+                {% if footer.linkedin_url %}
+                    <a href="{{ footer.linkedin_url }}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 {% endif %}
             </div>
-
-            <div class="nav-links">
-                <a href="{% pageurl site_root %}">Início</a>
-                {% for menuitem in site_root.get_children.live.in_menu %}
-                     <a href="{% pageurl menuitem %}"> {{ menuitem.title }}</a>
-                {% endfor %}
-            </div>
-            
-            <div class="search-container">
-                <form action="{% url 'search' %}" method="get" class="search-form" role="search">
-                    <input type="text" name="query" placeholder="Pesquisar..." class="search-input">
-                    <button type="submit" class="search-button" aria-label="Realizar Busca">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
-                    </button>
-                </form>
-            </div>
+            {% endwith %}
         </div>
-
-
-    <div class="header-images container">
-        {% if settings.base.HeaderSettings.logo %}
-            {% image settings.base.HeaderSettings.logo fill-300x110 as logo_img %}
-            <img src="{{ logo_img.url }}" alt="Logo" class="header-logo">
-        {% endif %}
-        
-        {% if settings.base.HeaderSettings.banner_url %}
-            <a href="{{settings.base.HeaderSettings.banner_url}}" target="_blank" rel="noopener">
-                <img src="{{ settings.base.HeaderSettings.banner.file.url }}" alt="Banner Anuncie aqui" class="header-banner">
-            </a>
-        {% elif settings.base.HeaderSettings.banner %}
-<img src="{{ settings.base.HeaderSettings.banner.file.url }}" alt="Banner" class="header-banner">
-        {% endif %}
-    </div>
-
-
-        {% wagtailuserbar "top-right" %}
-    </nav>
+</footer>
 </header>
