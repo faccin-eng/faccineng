@@ -1,0 +1,29 @@
+{% load wagtailimages_tags %}
+
+<div class="two-column-container">
+    <div class="column" {% if value.background_image_left %}style="background-image: url('{{ value.background_image_left.file.url }}');"{% endif %}>
+        {% if value.front_image_left %}
+            <div class="front-image">
+                {% image value.front_image_left width-200 %}
+            </div>
+        {% endif %}
+        {% if value.text_left %}
+            <div class="column-text">
+                {{ value.text_left }}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="column" {% if value.background_image_right %}style="background-image: url('{{ value.background_image_right.file.url }}');"{% endif %}>
+        {% if value.front_image_right %}
+            <div class="front-image">
+                {% image value.front_image_right width-200 %}
+            </div>
+        {% endif %}
+        {% if value.text_right %}
+            <div class="column-text">
+                {{ value.text_right }}
+            </div>
+        {% endif %}
+    </div>
+</div>

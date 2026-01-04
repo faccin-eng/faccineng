@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% load static %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-
-
 {% block content %}
-    {{ page.body|richtext }}
-
-
+    {% for block in page.body %}
+        {% include_block block %}
+    {% endfor %}
 {% endblock content %}
