@@ -1,4 +1,4 @@
-{% load wagtailsettings_tags wagtailcore_tags %}
+{% load wagtailsettings_tags wagtailcore_tags wagtailimages_tags %}
 
 <footer class="site-footer">
     <div class="container">
@@ -9,6 +9,17 @@
                     {{ footer.footer_text|richtext }}
                 </div>
             {% endif %}
+            {% if footer.banner_image1 %}
+                <div class="footer-img">
+                    {% if footer.banner_url1 %}
+                        <a href="{{footer.banner_url1}}" target="_blank">
+                            {% image footer.banner_image1 width-800 class="banner-img" %}
+                        </a>
+                    {% else %}
+                            {% image footer.banner_image1 width-800 class="banner-img" %}
+                    {% endif %}
+                </div>
+            {% endif %}
             {% endwith %}
-        </div>
+        </div> 
 </footer>
