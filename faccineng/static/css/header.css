@@ -1,39 +1,10 @@
-.social-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: right;
-}
-.nav-itens {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    font-size: 24px;
-    color:rgb(255, 255, 255);
-    background-color: rgb(2, 121, 91);
-    text-decoration: none;
-}
-.nav-itens a:hover{
-    background-color: rgb(255, 255, 255);
-    color: #00bd84;
-    transform: translateY(-2px);
-}
-
-.social-icons a {
-    font-size: 24px;
-    color: #333;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    color: #188103; 
-}
-
 #rotating-banner {
     position: relative;
     width: 100%;
     height: 110px;
     overflow: hidden;
-    background-color: #fff; /* ou a cor do seu site */
+    margin: 0 auto;
+    background-color: #1e7554; /* ou a cor do seu site */
 }
 
 #rotating-banner .heads-img {
@@ -55,4 +26,49 @@
     height: 100%;
     object-fit: contain;
     display: block;
+}
+
+header {
+    background-color: #1e7554;
+    padding-top: 15px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #1e7554;
+}
+.nav-itens {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+}
+.nav-itens a{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+} 
+.nav-itens a:hover{ 
+    background-color: #ffffff;
+    color: #1e0341;
+    transform: translateY(-2px);
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #a7f3d0; 
 }

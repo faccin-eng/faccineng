@@ -4,3 +4,7 @@
     color: rgb(2, 121, 91);
     justify-content: center;
 }
+.footer-img{
+    display: flex;
+    justify-content: center;
+}
