@@ -1,6 +1,81 @@
-{% load wagtailcore_tags navigation_tags %}
+{% load wagtailcore_tags navigation_tags wagtailsettings_tags %}
 
 <header>
+    <div class="container" id="rotating-banner">
+        {% with heads=settings.base.HeaderSettings %}
+        {# imagem 1 #}
+            {% if heads.banner_image1 %}
+                <div class="heads-img active" data-index="0">
+                    {% if heads.banner_url1 %}
+                        <a href="{{heads.banner_url1}}" target="_blank">
+                            <img src="{{heads.banner_image1.file.url}}" alt="Banner" class="banner-img">
+                        </a>
+                    {% else %}
+                        <img src="{{heads.banner_image1.file.url}}" alt="Banner" class="banner-img">
+                    {% endif %}
+                </div>
+            {% endif %}
+        {# imagem 2 #}
+                {% if heads.banner_image2 %}
+                <div class="heads-img" data-index="1">
+                    {% if heads.banner_url2 %}
+                        <a href="{{heads.banner_url2}}" target="_blank">
+                            <img src="{{heads.banner_image2.file.url}}" alt="Banner" class="banner-img">
+                        </a>
+                    {% else %}
+                        <img src="{{heads.banner_image2.file.url}}" alt="Banner" class="banner-img">
+                    {% endif %}
+                </div>
+            {% endif %}
+        {# imagem 3 #}
+                {% if heads.banner_image3 %}
+                <div class="heads-img" data-index="2">
+                    {% if heads.banner_url3 %}
+                        <a href="{{heads.banner_url3}}" target="_blank">
+                            <img src="{{heads.banner_image3.file.url}}" alt="Banner" class="banner-img">
+                        </a>
+                    {% else %}
+                        <img src="{{heads.banner_image3.file.url}}" alt="Banner" class="banner-img">
+                    {% endif %}
+                </div>
+            {% endif %}
+
+
+            {% if heads.banner_image2 or heads.banner_image3 %}
+            <script>
+                (function() {
+                    const wrappers = document.querySelectorAll('#rotating-banner .heads-img');
+                    if (wrappers.length <= 1) return;
+                    
+                    let indices = Array.from({length: wrappers.length}, (_, i) => i);
+                    let currentIndex = 0;
+                    
+                    function shuffle(array) {
+                        for (let i = array.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [array[i], array[j]] = [array[j], array[i]];
+                        }
+                        return array;
+                    }
+                    
+                    function rotateImages() {
+                        wrappers[indices[currentIndex]].classList.remove('active');
+                        currentIndex = (currentIndex + 1) % indices.length;
+                        
+                        if (currentIndex === 0) {
+                            indices = shuffle(indices);
+                        }
+                        
+                        wrappers[indices[currentIndex]].classList.add('active');
+                    }
+                    
+                    setInterval(rotateImages, 15000);
+                })();
+            </script>
+                    {% endif %}
+            {% endwith %}
+    </div>
+
     {% get_site_root as site_root %}
     <nav>
         <div class="nav-itens">
@@ -9,15 +84,10 @@
             <a href="{% pageurl menuitem %}">| {{ menuitem.title }}</a>
         {% endfor %}
         </div>
-    </nav>
-    {% load wagtailsettings_tags wagtailcore_tags %}
 
-<footer class="site-footer">
-    <div class="container">
+
         {% with footer=settings.base.FooterSettings %}
-            <div class="banner-head">
 
-            </div>
             <div class="social-icons">
                 {% if footer.zap_url %}
                     <a href="{{ footer.zap_url }}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -36,6 +106,7 @@
                 {% endif %}
             </div>
             {% endwith %}
-        </div>
-</footer>
+    </nav>
+
+
 </header>

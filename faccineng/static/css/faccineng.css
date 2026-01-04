@@ -1,37 +1,4 @@
-.social-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: right;
 
-}
-.nav-itens {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    font-size: 24px;
-    color:rgb(255, 255, 255);
-    background-color: rgb(2, 121, 91);
-    text-decoration: none;
-}
-.nav-itens a:hover{
-    background-color: rgb(255, 255, 255);
-    color: #00bd84;
-    transform: translateY(-2px);
-}
 
-.social-icons a {
-    font-size: 24px;
-    color: #333;
-    text-decoration: none;
-}
 
-.social-icons a:hover {
-    color: #188103; 
-}
 
-.footer-text{
-    display: flex;
-    font-size: 18px;
-    color: rgb(2, 121, 91);
-    justify-content: center;
-}

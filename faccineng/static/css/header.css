@@ -1,0 +1,58 @@
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: right;
+}
+.nav-itens {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    font-size: 24px;
+    color:rgb(255, 255, 255);
+    background-color: rgb(2, 121, 91);
+    text-decoration: none;
+}
+.nav-itens a:hover{
+    background-color: rgb(255, 255, 255);
+    color: #00bd84;
+    transform: translateY(-2px);
+}
+
+.social-icons a {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #188103; 
+}
+
+#rotating-banner {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+    background-color: #fff; /* ou a cor do seu site */
+}
+
+#rotating-banner .heads-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#rotating-banner .heads-img.active {
+    opacity: 1;
+}
+
+#rotating-banner .banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
