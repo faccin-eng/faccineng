@@ -3,12 +3,6 @@
 <footer class="site-footer">
     <div class="container">
         {% with footer=settings.base.FooterSettings %}
-
-            {% if footer.footer_text %}
-                <div class="footer-text">
-                    {{ footer.footer_text|richtext }}
-                </div>
-            {% endif %}
             {% if footer.banner_image1 %}
                 <div class="footer-img">
                     {% if footer.banner_url1 %}
@@ -18,6 +12,11 @@
                     {% else %}
                         <img src="{{footer.banner_image1.file.url}}" alt="Banner" class="banner-img">
                     {% endif %}
+                </div>
+            {% endif %}
+                {% if footer.footer_text %}
+                <div class="footer-text">
+                    {{ footer.footer_text|richtext }}
                 </div>
             {% endif %}
             {% endwith %}
