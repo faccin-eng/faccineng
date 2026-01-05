@@ -24,10 +24,19 @@ class TwoColumnBlock(blocks.StructBlock):
         icon = 'grip'
         label = 'Duas colunas'
 
+class FullWidthBlock(blocks.StructBlock):
+    background_image = ImageChooserBlock(required=False, label="Imagem de fundo")
+    content = ColumnContentBlock(required=False, label="Conteúdo")
+
+    class Meta:
+        template = 'home/blocks/full_width_block.html'
+        icon = 'horizontalrule'
+        label = 'Bloco estendido'
 
 class HomePage(Page):
     body = StreamField([
         ('two_columns', TwoColumnBlock()),
+        ('full_width', FullWidthBlock()),
         ('rich_text', blocks.RichTextBlock(label="Texto livre")),
         ('raw_html', blocks.RawHTMLBlock(label="HTML/Embed grande")),
     ], blank=True, use_json_field=True)
