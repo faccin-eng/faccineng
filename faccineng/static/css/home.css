@@ -19,7 +19,17 @@
     position: relative;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
+.column:has(.column-content):not(:has(.column-content:empty))::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    z-index: 1;
+}
 .column::before {
     content: '';
     position: absolute;
@@ -29,21 +39,76 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.3); /* overlay escuro para destacar texto */
     border-radius: 8px;
+    z-index: 1;
 }
-
-.front-image {
+.column-content {
     position: relative;
     z-index: 2;
-    margin-bottom: 20px;
-}
-
-.column-text {
-    position: relative;
-    z-index: 2;
-    color: white;
+    width: 100%;
     text-align: left;
+    }
+.column-content .rich-text,
+.column-content p {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.column:not([style*="background-image"]) {
+    background-color: #f5f5f5;
+}
+.column:not([style*="background-image"]) .column-content .rich-text,
+.column:not([style*="background-image"]) .column-content p {
+    color: #333;
+    text-shadow: none;
+}
+.column[style*="background-image"] .column-content,
+.column[style*="background-image"] .column-content * {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
+}
+
+.column-content iframe {
+    max-width: 100%;
+    border-radius: 4px ;
+}
+.column-content iframe[src*="google.com/maps"] {
+    width: 100% !important;
+    height: 400px !important;
+    max-width: 100%;
+    border-radius: 4px;
+    border: none;
+}
+.column-content iframe[src*="instagram.com"] {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: 600px !important;
+    min-height: 600px !important;
+    border: none !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+.column-content > iframe[src*="instagram.com"] {
+    flex-shrink: 0 !important;
+}
+.column-content .instagram-media > div:first-child {
+    max-height: 600px;
+    overflow: hidden;
+}
+.column-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.column-content .rich-text {
+    color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
+
+
 
 @media (max-width: 768px) {
     .two-column-container {

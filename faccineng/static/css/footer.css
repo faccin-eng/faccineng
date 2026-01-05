@@ -1,7 +1,7 @@
 .footer-text{
     display: flex;
-    font-size: 18px;
-    color: rgb(2, 121, 91);
+    font-size: 14px;
+    color: rgb(0, 0, 0);
     justify-content: center;
 }
 .footer-img{
