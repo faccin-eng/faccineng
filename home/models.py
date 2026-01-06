@@ -13,6 +13,12 @@ class ColumnContentBlock(blocks.StreamBlock):
         icon = 'placeholder'
 
 class TwoColumnBlock(blocks.StructBlock):
+    min_height = blocks.IntegerBlock(
+        required=False,
+        default=300,
+        label="Altura mínima (px)",
+        help_text="Defina a altura dos blocos"
+    )
     background_image_left = ImageChooserBlock(required=False, label="Imagem de fundo (esquerda)")
     content_left = ColumnContentBlock(required=False, label="Conteúdo (esquerda)")
     
@@ -25,6 +31,12 @@ class TwoColumnBlock(blocks.StructBlock):
         label = 'Duas colunas'
 
 class FullWidthBlock(blocks.StructBlock):
+    min_height = blocks.IntegerBlock(
+        required=False,
+        default=300,
+        label="Altura mínima (px)",
+        help_text="Defina a altura dos blocos"
+    )
     background_image = ImageChooserBlock(required=False, label="Imagem de fundo")
     content = ColumnContentBlock(required=False, label="Conteúdo")
 

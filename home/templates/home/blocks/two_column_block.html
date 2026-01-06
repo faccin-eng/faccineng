@@ -1,7 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 <div class="two-column-container">
-    <div class="column" {% if value.background_image_left %}style="background-image: url('{{ value.background_image_left.file.url }}');"{% endif %}>
+    <div class="column" {% if value.background_image_left %}style="background-image: url('{{ value.background_image_left.file.url }}'); min-height: {{ value.min_height|default:300}}px;"{% else %}style="min-height: {{ value.min_height|default:300}}"{% endif %}>
         <div class="column-content">
             {% for block in value.content_left %}
                 {% include_block block %}
@@ -9,8 +9,7 @@
         </div>
     </div>
     
-    <div class="column" {% if value.background_image_right %}style="background-image: url('{{ value.background_image_right.file.url }}');"{% endif %}>
-        <div class="column-content">
+<div class="column" {% if value.background_image_right %}style="background-image: url('{{ value.background_image_right.file.url }}'); min-height: {{ value.min_height|default:300 }}px;"{% else %}style="min-height: {{ value.min_height|default:300 }}px;"{% endif %}>        <div class="column-content">
             {% for block in value.content_right %}
                 {% include_block block %}
             {% endfor %}

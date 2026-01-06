@@ -28,7 +28,7 @@
 }
 
 .full-width-column:not([style*="background-image"]) {
-    background: linear-gradient(135deg, #007ab3 0%, #53559e 100%);
+    background: linear-gradient(135deg, #6a8794 0%, #7273ad 100%); /* COR DOS BLOCOS*/
 }
 
 .full-width-column[style*="background-image"]::before {

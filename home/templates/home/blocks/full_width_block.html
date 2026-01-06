@@ -1,8 +1,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 <div class="full-width-container">
-    <div class="full-width-column" {% if value.background_image %}style="background-image: url('{{ value.background_image.file.url }}');"{% endif %}>
-        <div class="column-content">
+<div class="full-width-column" {% if value.background_image %}style="background-image: url('{{ value.background_image.file.url }}'); min-height: {{ value.min_height|default:300 }}px;"{% else %}style="min-height: {{ value.min_height|default:300 }}px;"{% endif %}>        <div class="column-content">
             {% for block in value.content %}
                 {% include_block block %}
             {% endfor %}
