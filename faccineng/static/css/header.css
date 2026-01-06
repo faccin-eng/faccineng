@@ -59,6 +59,17 @@ nav{
     color: #00606d;
     transform: translateY(-2px);
 }
+
+/* .nav-logo-container {
+    flex-shrink: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+} */
+.nav-logo-container img{
+    width: auto;
+    /* background: rgba(27, 66, 1, 0.479); */
+}
+
 .social-icons {
     display: flex;
     gap: 15px;
@@ -72,4 +83,60 @@ nav{
 
 .social-icons a:hover {
     color: #a7f3d0; 
+}
+@media (max-width: 768px) {
+    #rotating-banner {
+        height: 80px;
+    }
+    
+    header {
+        padding-top: 10px;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+    
+    .nav-itens {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 16px;
+        width: 100%;
+    }
+    
+    .nav-itens a {
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+    
+    .social-icons {
+        gap: 12px;
+    }
+    
+    .social-icons a {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #rotating-banner {
+        height: 60px;
+    }
+    
+    .nav-itens {
+        font-size: 14px;
+        gap: 8px;
+    }
+    
+    .nav-itens a {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    
+    .social-icons a {
+        font-size: 18px;
+    }
 }

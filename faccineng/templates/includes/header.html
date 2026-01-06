@@ -77,7 +77,14 @@
     </div>
 
     {% get_site_root as site_root %}
+
     <nav>
+        <div class="nav-logo-container">
+            {% if settings.base.HeaderSettings.logo %}
+            <img src="{{ settings.base.HeaderSettings.logo.file.url}}" alt="Logo" class="navbar-logo">
+            {% endif %}
+        </div>
+
         <div class="nav-itens">
         <a href="{% pageurl site_root %}">Home</a> 
         {% for menuitem in site_root.get_children.live.in_menu %}

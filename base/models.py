@@ -54,6 +54,21 @@ class FooterSettings(BaseGenericSetting):
     ]
 @register_setting
 class HeaderSettings(BaseGenericSetting):
+    logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Logo Cabeçalho"
+    )
+    favicon = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='Favicon'
+    )
     banner_image1 = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -96,12 +111,19 @@ class HeaderSettings(BaseGenericSetting):
     )
 
     panels = [
-        MultiFieldPanel([
+        MultiFieldPanel(
+            [
+            FieldPanel("favicon"),
+            FieldPanel("logo"),
+            ], heading="Imagens da marca"
+        ),
+        MultiFieldPanel(
+            [
             FieldPanel("banner_image1"),
             FieldPanel("banner_image2"),
             FieldPanel("banner_image3"),
             FieldPanel("banner_url1"),
             FieldPanel("banner_url2"),
             FieldPanel("banner_url3"),
-        ], "Configurações do carrossel de banners do Rodapé (800x110px)"),
+            ], "Configurações do carrossel de banners do Rodapé (800x110px)"),
     ]
