@@ -2,15 +2,72 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
+<div class="tools-container">
+    <h1>{{ page.title }}</h1>
 
-{% if page.intro_text %}
-    {{ page.intro_text|richtext }}
-{% endif %}
+    {% if page.intro_text %}
+        <div class="intro-text">
+            {{ page.intro_text|richtext }}
+        </div>
+    {% endif %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="ofx_file" accept=".ofx">
-    <button type="submit">Converter</button>
-</form>
+    <form method="post" enctype="multipart/form-data" id="upload-form">
+        {% csrf_token %}
+        <div class="drop-zone" id="drop-zone">
+            <div class="drop-zone-content">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Arraste o arquivo .ofx aqui</p>
+                <span>ou</span>
+                <label for="file-input" class="file-label">Escolha um arquivo</label>
+                <input type="file" name="ofx_file" accept=".ofx" id="file-input" hidden>
+                <div class="file-name" id="file-name"></div>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>Converter</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const fileName = document.getElementById('file-name');
+    const submitBtn = document.getElementById('submit-btn');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            updateFileName(files[0]);
+        }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            updateFileName(e.target.files[0]);
+        }
+    });
+
+    function updateFileName(file) {
+        fileName.textContent = `📄 ${file.name}`;
+        submitBtn.disabled = false;
+    }
+});
+</script>
 {% endblock %}

@@ -15,10 +15,12 @@
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
 }
 
 #rotating-banner .heads-img.active {
     opacity: 1;
+    pointer-events: auto;
 }
 
 #rotating-banner .banner-img {

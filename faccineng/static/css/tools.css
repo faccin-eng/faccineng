@@ -1,0 +1,122 @@
+.tools-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.tools-container h1 {
+    text-align: center;
+    color: #1e7554;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.drop-zone {
+    border: 3px dashed #1e7554;
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.drop-zone:hover {
+    background-color: #e8f5f1;
+    border-color: #16654a;
+}
+
+.drop-zone.dragover {
+    background-color: #d4edda;
+    border-color: #28a745;
+    transform: scale(1.02);
+}
+
+.drop-zone-content i {
+    font-size: 64px;
+    color: #1e7554;
+    margin-bottom: 20px;
+}
+
+.drop-zone-content p {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.drop-zone-content span {
+    display: block;
+    color: #999;
+    margin: 15px 0;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #1e7554;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.file-label:hover {
+    background-color: #16654a;
+}
+
+.file-name {
+    margin-top: 15px;
+    color: #1e7554;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #1e7554;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #16654a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 117, 84, 0.3);
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .tools-container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    .drop-zone {
+        padding: 40px 20px;
+    }
+    
+    .drop-zone-content i {
+        font-size: 48px;
+    }
+    
+    .drop-zone-content p {
+        font-size: 16px;
+    }
+}
