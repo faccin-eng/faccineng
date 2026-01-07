@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-indexpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-
-    {% for block in page.intro %}
-        {% if block.block_type == 'title' %}
-            <h2>{{ block.value }}</h2>
-        {% elif block.block_type == 'corpo' %}
-            <div>{{ block.value|richtext }}</div>
-        {% endif %}
-    {% endfor %}
-
-    {% for post in page.get_children %}
-        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        {{ post.specific.body }}
-    {% endfor %}
+    <div class="page-container">
+        <h1>{{ page.title }}</h1>
+        {% for block in page.intro %}
+            {% if block.block_type == 'title' %}
+                <h2>{{ block.value }}</h2>
+            {% elif block.block_type == 'corpo' %}
+                <div class="intro-content">{{ block.value|richtext }}</div>
+            {% endif %}
+        {% endfor %}
+        {% for post in page.get_children %}
+            <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+            {{ post.specific.body }}
+        {% endfor %}
+    </div>
 {% endblock %}
