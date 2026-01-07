@@ -1,21 +1,21 @@
-/*document.addEventListener('DOMContentLoaded', function() {
-    const navContent = document.querySelector('.nav-itens');
-    const header = document.querySelector('.header');
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    const header = document.querySelector('header');
     
-    if (navContent && header) {
-        const headerHeight = header.offsetHeight;
-        const navHeight = navContent.offsetHeight;
+    if (nav && header) {
+        const banner = document.getElementById('rotating-banner');
+        const bannerHeight = banner ? banner.offsetHeight: 0;
         
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            if (scrollTop > headerHeight - navHeight) {
-                navContent.classList.add('fixed');
-                document.getElementById('main').style.paddingTop = navHeight + 'px';
+            if (scrollTop > bannerHeight) {
+                nav.classList.add('fixed');
+                header.style.paddingBottom = nav.offsetHeight + 'px';
             } else {
-                navContent.classList.remove('fixed');
-                document.getElementById('main').style.paddingTop = '0';
+                nav.classList.remove('fixed');
+                header.style.paddingBottom = '0';
             }
         });
     }
-    }); */
+    }); 

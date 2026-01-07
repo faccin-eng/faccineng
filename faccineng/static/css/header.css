@@ -60,14 +60,18 @@ nav{
     transform: translateY(-2px);
 }
 
-/* .nav-logo-container {
-    flex-shrink: 0;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-} */
 .nav-logo-container img{
     width: auto;
-    /* background: rgba(27, 66, 1, 0.479); */
+    filter: brightness(0.7);
+}
+nav.fixed {
+    position: fixed;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .social-icons {
