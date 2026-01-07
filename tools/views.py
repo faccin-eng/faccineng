@@ -49,15 +49,16 @@ class ofx_converter(Page):
                 writer.writerow(['Data', 'Descrição', 'Valor'])
                 
                 for trans in transactions:
-                    valor_formatado = f"{trans.amount:.2f}".replace('.', ',')
+                    valor_float = float(trans.amount)
+                    valor_formatado = f"{valor_float:.2f}".replace('.', ',') + ';' #adiciona um ; ao final para evitar sep de coluna
                     writer.writerow([
                         trans.date.strftime('%d/%m/%Y'),
                         trans.payee[:200], 
-                        valor_formatado
+                        valor_formatado,
                     ])
                 
                 response = HttpResponse(output.getvalue(), content_type='text/csv; charset=utf-8')
-                response['Content-Disposition'] = 'attachment; filename="extrato.csv"'
+                response['Content-Disposition'] = 'attachment; filename="convertido.csv"'
                 return response
                 
             except Exception as e:
