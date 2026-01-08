@@ -8,7 +8,7 @@ from ofxparse import OfxParser
 import csv
 import io
 
-MAX_FILE_SIZE = 5 * 1024 * 1024  
+MAX_FILE_SIZE = 1 * 1024 * 1024  
 
 @ratelimit(key='ip', rate='6/h', method='POST')
 class ofx_converter(Page):
@@ -28,7 +28,7 @@ class ofx_converter(Page):
             ofx_file = request.FILES['ofx_file']
             
             if ofx_file.size > MAX_FILE_SIZE:
-                return HttpResponseBadRequest("Arquivo muito grande (máx 5MB)")
+                return HttpResponseBadRequest("Arquivo muito grande (máx 1MB)")
             
             if not ofx_file.name.lower().endswith('.ofx'):
                 return HttpResponseBadRequest("Apenas arquivos .ofx são permitidos")
