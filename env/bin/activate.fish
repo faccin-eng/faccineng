@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/mjfaccin/Documents/projetos/faccineng/env
+set -gx VIRTUAL_ENV /home/mjfaccin/dart/pythonJetos/faccineng/env
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
