@@ -100,9 +100,25 @@ nav.fixed {
     }
     
     nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 100px;
+
+    }
+    .nav-logo-container{
+        order: 1;
+    }
+    .nav-logo-container img{
+        max-height: 30px;
+    }
+    .nav-fixed {
+        /* height: auto !important; */
+        gap: 5px;
+        padding: 8px 10px ;
     }
     
     .nav-itens {
@@ -111,6 +127,7 @@ nav.fixed {
         gap: 10px;
         font-size: 16px;
         width: 100%;
+        order: 3;
     }
     
     .nav-itens a {
@@ -120,10 +137,11 @@ nav.fixed {
     
     .social-icons {
         gap: 12px;
+        order: 2;
     }
     
     .social-icons a {
-        font-size: 20px;
+        font-size: 10px;
     }
 }
 
