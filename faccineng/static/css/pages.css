@@ -50,6 +50,7 @@
 .template-standardpage .rich-text p:not(:empty) {
     margin-bottom: 15px;
     line-height: 1.8;
+    text-align: justify;
 }
 
 .template-standardpage .rich-text p:empty {
@@ -66,8 +67,18 @@
     margin-bottom: 8px;
 }
 
-.template-standardpage .rich-text div {
-    line-height: 0;
+.template-standardpage .rich-text > div {
+    line-height: 0 !important;
+    text-align: center !important;
+}
+
+/* Restaura para parágrafos */
+.template-standardpage .rich-text > div > p:not(:empty) {
+    line-height: 1.8 !important;
+    text-align: justify !important;
+}
+.template-standardpage .rich-text > div > p:empty {
+    display: none !important;
 }
 
 /* Primeira imagem - Standard Page */
@@ -94,6 +105,20 @@
     float: none !important;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.template-standardpage .image-container {
+    line-height: 0 !important;
+    text-align: center !important;
+}
+
+.template-standardpage .image-container p:empty {
+    display: none !important;
+}
+
+.template-standardpage .image-container p:not(:empty) {
+    line-height: 1.8 !important;
+    text-align: justify !important;
 }
 
 /* ========== INDEX PAGE ========== */
@@ -130,13 +155,14 @@
     font-family: Arial, sans-serif;
     font-size: 16px;
     color: #333;
-    text-align: justify;
+    text-align: center;
     line-height: 0;
 }
 
 .post-body p:not(:empty) {
     line-height: 1.8;
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .post-body p:empty {

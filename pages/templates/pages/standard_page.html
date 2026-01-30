@@ -12,7 +12,7 @@
                 {% if block.block_type == 'heading' %}
                     <h2>{{ block.value }}</h2>
                 {% elif block.block_type == 'paragraph' %}
-                    <div>{{ block.value|richtext }}</div>
+                    <div class="image-container">{{ block.value|richtext }}</div>
                 {% endif %}
             {% endfor %}
         </div>
