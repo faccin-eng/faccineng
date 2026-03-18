@@ -1,17 +1,19 @@
+/* ── Containers ─────────────────────────────────────── */
 .two-column-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin: 40px 0;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.full-width-container {
-    margin: 40px 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
 }
 
+.full-width-container {
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+/* ── Shared column base ──────────────────────────────── */
+.column,
 .full-width-column {
     background-size: cover;
     background-position: center;
@@ -27,10 +29,17 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.full-width-column:not([style*="background-image"]) {
-    background: linear-gradient(135deg, #6a8794 0%, #7273ad 100%); 
+/* ── Default gradients (sem imagem de fundo) ─────────── */
+.column:not([style*="background-image"]) {
+    background: linear-gradient(135deg, #8aaebe 0%, #7273ad 100%);
 }
 
+.full-width-column:not([style*="background-image"]) {
+    background: linear-gradient(135deg, #6a8794 0%, #7273ad 100%);
+}
+
+/* ── Overlay escuro sobre imagem de fundo ────────────── */
+.column[style*="background-image"]::before,
 .full-width-column[style*="background-image"]::before {
     content: '';
     position: absolute;
@@ -38,45 +47,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.45);
     border-radius: 8px;
     z-index: 1;
 }
-.full-width-column .column-content h1,
-.full-width-column .column-content h2,
-.full-width-column .column-content h3,
-.full-width-column .column-content p,
-.full-width-column .column-content li {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.9) !important;
-}
 
-.full-width-column:not([style*="background-image"]) .column-content .rich-text,
-.full-width-column:not([style*="background-image"]) .column-content p {
-    color: #f1ffc9;
-    text-shadow: none;
-}
-
-.full-width-column[style*="background-image"] .column-content,
-.full-width-column[style*="background-image"] .column-content * {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
-}
-
-.column {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 300px;
-    padding: 30px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+/* ── Column content ──────────────────────────────────── */
 .column-content {
     position: relative;
     z-index: 2;
@@ -85,29 +61,25 @@
     flex: 1;
 }
 
-.column:not([style*="background-image"]) {
-    background: linear-gradient(135deg, #8aaebe 0%, #7273ad 100%);
-}
-.column[style*="background-image"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    z-index: 1;
+/* ── Cores de texto: com imagem de fundo ─────────────── */
+.column[style*="background-image"] .column-content,
+.column[style*="background-image"] .column-content *,
+.full-width-column[style*="background-image"] .column-content,
+.full-width-column[style*="background-image"] .column-content * {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
 }
 
-.column .column-content h1,
-.column .column-content h2,
-.column .column-content h3,
-.column .column-content p,
-.column .column-content li {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.9) !important;
+/* ── Cores de texto: sem imagem de fundo ─────────────── */
+.column:not([style*="background-image"]) .column-content,
+.column:not([style*="background-image"]) .column-content *,
+.full-width-column:not([style*="background-image"]) .column-content,
+.full-width-column:not([style*="background-image"]) .column-content * {
+    color: #f1ffc9;
+    text-shadow: none;
 }
+
+/* ── Tipografia ──────────────────────────────────────── */
 .column-content h1 {
     font-size: 28px;
     line-height: 1.3;
@@ -126,6 +98,7 @@
     margin-bottom: 12px;
     text-align: left;
 }
+
 .column-content ul {
     padding-left: 20px;
     margin: 15px 0;
@@ -138,10 +111,7 @@
     margin-bottom: 8px;
 }
 
-.column-content > *:not(img) {
-    grid-column: 1 / -1;
-}
-
+/* ── Imagens ─────────────────────────────────────────── */
 .column-content img {
     width: 194px;
     height: 259px;
@@ -153,31 +123,19 @@
     right: 0;
 }
 
-.column:not([style*="background-image"]) {
-    background-color: #f5f5f5;
-}
-.column:not([style*="background-image"]) .column-content .rich-text,
-.column:not([style*="background-image"]) .column-content p {
-    color: #f1ffc9;
-    text-shadow: none;
-}
-.column[style*="background-image"] .column-content,
-.column[style*="background-image"] .column-content * {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8) !important;
-}
-
+/* ── Embeds / iframes ────────────────────────────────── */
 .column-content iframe {
     max-width: 100%;
-    border-radius: 4px ;
+    border-radius: 4px;
 }
+
 .column-content iframe[src*="google.com/maps"] {
     width: 100% !important;
     height: 400px !important;
-    max-width: 100%;
     border-radius: 4px;
     border: none;
 }
+
 .column-content iframe[src*="instagram.com"] {
     width: 100% !important;
     max-width: 400px !important;
@@ -186,33 +144,29 @@
     border: none !important;
     margin: 0 auto !important;
     display: block !important;
+    flex-shrink: 0;
 }
-.column-content > iframe[src*="instagram.com"] {
-    flex-shrink: 0 !important;
-}
+
 .column-content .instagram-media > div:first-child {
     max-height: 600px;
     overflow: hidden;
 }
 
-.column-content .rich-text {
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-
-
+/* ── Responsivo ──────────────────────────────────────── */
 @media (max-width: 768px) {
     .two-column-container {
         grid-template-columns: 1fr;
     }
-    .column-content{
+
+    .column {
+        padding: 25px;
+    }
+
+    .column-content {
         padding-right: 0;
         min-height: auto;
     }
-    .column{
-        padding: 25px;
-    }
+
     .column-content img {
         position: static;
         display: block;

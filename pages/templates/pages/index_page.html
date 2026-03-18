@@ -15,20 +15,27 @@
             {% endif %}
         {% endfor %}
         
-        <div class="posts-list">
+        <div class="posts-grid">
             {% for post in page.get_children %}
-                <article class="post-preview">
-                    <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                    <div class="post-body">
-                        {% for block in post.specific.body %}
-                            {% if block.block_type == 'heading' %}
-                                <h3>{{ block.value }}</h3>
-                            {% elif block.block_type == 'paragraph' %}
-                                {{ block.value|richtext }}
-                            {% endif %}
-                        {% endfor %}
+                {% with specific=post.specific %}
+                <article class="post-card">
+                    <div class="post-card__content">
+                        <h2 class="post-card__title">
+                            <a href="{% pageurl post %}">{{ post.title }}</a>
+                        </h2>
+                        <div class="post-card__preview">
+                            {% for block in specific.body %}
+                                {% if block.block_type == 'heading' %}
+                                    <h3>{{ block.value }}</h3>
+                                {% elif block.block_type == 'paragraph' %}
+                                    {{ block.value|richtext }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <a href="{% pageurl post %}" class="post-card__link">Ver mais →</a>
                     </div>
                 </article>
+                {% endwith %}
             {% endfor %}
         </div>
     </div>
